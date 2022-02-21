@@ -3,5 +3,7 @@ var app = express();
 module.exports = app;
 console.log("Hello World");
 app.get("/",function(req, res) {
-   res.send('Hello Express'); 
+   var absolutePath = __dirname;
+   console.log("Path " + absolutePath);
+   res.sendFile(absolutePath + '/views/index.html');
 });
