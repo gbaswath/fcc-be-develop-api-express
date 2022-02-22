@@ -9,5 +9,7 @@ app.get("/", function (req, res) {
    res.sendFile(absolutePath + "/views/index.html");
 });
 app.get("/json", function (req, res) {
-   res.json('{"message" : "Hello json"}');
+   var data = {"message": "Hello json"};
+   console.log("Data " + JSON.stringify(data));
+   res.json(data);
 });
