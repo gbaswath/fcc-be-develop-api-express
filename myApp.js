@@ -24,3 +24,11 @@ app.get("/json", function (req, res) {
    console.log("Data " + JSON.stringify(data));
    res.json(data);
 });
+app.get("/now", function(req, res, next) {
+   req.time = new Date().toString();
+   next();
+}, function (req, res) {
+   var timeData = {"time" : req.time};
+   console.log("Time Data " + JSON.stringify(timeData));
+   res.send(timeData);
+});
