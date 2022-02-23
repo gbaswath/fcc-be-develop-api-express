@@ -32,3 +32,9 @@ app.get("/now", function(req, res, next) {
    console.log("Time Data " + JSON.stringify(timeData));
    res.send(timeData);
 });
+app.get("/:word/echo", function(req, res) {
+   var echoData = req.params.word;
+   echoData = {"echo" : echoData};
+   console.log("Echo Data " + JSON.stringify(echoData));
+   res.send(echoData);
+});
