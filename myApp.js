@@ -39,9 +39,12 @@ app.get("/:word/echo", function (req, res) {
    res.send(echoData);
 });
 var queryHandler = function (req, res) {
-   let firstName = req.query.firstname;
-   let lastName = req.query.lastname;
-   let name = firstName + " " + lastName
+   console.log("Request URL " + req.originalUrl);
+   let firstName = req.query.first;
+   let lastName = req.query.last;
+   console.log("Got First Name " + firstName);
+   console.log("Got Last Name " + lastName);
+   let name = firstName + " " + lastName;
    let responseData = { "name": name };
    console.log("Query Data " + JSON.stringify(responseData));
    res.send(responseData);
