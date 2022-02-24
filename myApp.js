@@ -50,7 +50,8 @@ app.get("/:word/echo", function (req, res) {
    console.log("Echo Data " + JSON.stringify(echoData));
    res.send(echoData);
 });
-var queryHandler = function (req, res) {
+//Get Query Handler
+let getQueryHandler = function (req, res) {
    console.log("Request URL " + req.originalUrl);
    let firstName = req.query.first;
    let lastName = req.query.last;
@@ -58,7 +59,19 @@ var queryHandler = function (req, res) {
    console.log("Got Last Name " + lastName);
    let name = firstName + " " + lastName;
    let responseData = { "name": name };
-   console.log("Query Data " + JSON.stringify(responseData));
+   console.log("Get Query Data " + JSON.stringify(responseData));
    res.send(responseData);
 };
-app.route("/name").get(queryHandler).post(queryHandler);
+//Post Query Handler
+let postQueryHandler = function (req, res) {
+   console.log("Request BODY " + JSON.stringify(req.body));
+   let firstName = req.body.first;
+   let lastName = req.body.last;
+   console.log("Got First Name " + firstName);
+   console.log("Got Last Name " + lastName);
+   let name = firstName + " " + lastName;
+   let responseData = { "name": name };
+   console.log("Post Query Data " + JSON.stringify(responseData));
+   res.send(responseData);
+};
+app.route("/name").get(getQueryHandler).post(postQueryHandler);
