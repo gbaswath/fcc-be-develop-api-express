@@ -24,17 +24,26 @@ app.get("/json", function (req, res) {
    console.log("Data " + JSON.stringify(data));
    res.json(data);
 });
-app.get("/now", function(req, res, next) {
+app.get("/now", function (req, res, next) {
    req.time = new Date().toString();
    next();
 }, function (req, res) {
-   var timeData = {"time" : req.time};
+   var timeData = { "time": req.time };
    console.log("Time Data " + JSON.stringify(timeData));
    res.send(timeData);
 });
-app.get("/:word/echo", function(req, res) {
+app.get("/:word/echo", function (req, res) {
    var echoData = req.params.word;
-   echoData = {"echo" : echoData};
+   echoData = { "echo": echoData };
    console.log("Echo Data " + JSON.stringify(echoData));
    res.send(echoData);
 });
+var queryHandler = function (req, res) {
+   let firstName = req.query.firstname;
+   let lastName = req.query.lastname;
+   let name = firstName + " " + lastName
+   let responseData = { "name": name };
+   console.log("Query Data " + JSON.stringify(responseData));
+   res.send(responseData);
+};
+app.route("/name").get(queryHandler).post(queryHandler);
